@@ -8,6 +8,9 @@ using UnityEngine;
 
 public static class GlobalStats
 {
+
+    public static SpeciesGeneralData speciesGeneralData { get; private set; }
+
     public const int LENGTH_OF_AN_HOUR = 3600;
 
     // need to keep track of current time and how long it's been since specific things have occured.
@@ -26,4 +29,5 @@ public static class GlobalStats
         elapsedSavefileTime += (int)Time.deltaTime;
         // not sure how to check what hour it is or even if we ought to...
     }
+
 }

@@ -13,5 +13,6 @@ public class FriendStats
     int health;
     int affection;
 
-    
+    public int happinessEvolveRequirement;
+    public string bonusEvolveRequirement;
 }

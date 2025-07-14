@@ -1,64 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using static Species;
 
 public class Critter : MonoBehaviour
 {
-    Species currentSpecies;
-    FriendStats status;
+    SpeciesImmutableData currentSpecies;
+    public FriendStats status;
     int numberOfConvosHad;
 
-
+    string bonusEvolveRequirement;
 
     void Update()
     {
+        // should probably be moving around on the screen
         
     }
+
+    // 
 }
 
-public struct SpecificSpeciesData
-{
 
-    public Sprite
-    enum DepletionRate // should hunger and happy depletion rates be separate?
-    {
-        fast,
-        mid,
-        slow
-    }
 
-    enum Personality 
-    {
-        laidback,
-        friendly,
-        shy
-    }
-
-    DepletionRate depletionRate;
-    Personality personality;
-
-    public void SetUp(SpeciesID species)
-    {
-
-    }
-}
-
-public class Species
-{
-    public enum SpeciesID
-    {
-        baby1,
-        baby2,
-        teen1,
-        teen2,
-        adult1,
-        adult2
-    }
-
-    SpecificSpeciesData data;
-
-}
 
 
 
