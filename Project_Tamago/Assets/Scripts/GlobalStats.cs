@@ -12,12 +12,15 @@ public static class GlobalStats
     public const int LENGTH_OF_AN_HOUR = 3600;
 
     // need to keep track of current time and how long it's been since specific things have occured.
-    public static int elapsedSavefileTime {  get; private set; }
-    public static int timeSinceLastHour { get; private set; }
-    public static int timeSinceTimeWasLastChecked { get; private set; }
+    public static float elapsedTime {  get; private set; }
 
     public static int previousHour;
     public static int previousDay;
+
+    public delegate void HourPassed();
+    public static event HourPassed OnHourPassed;
+
+    static int decreaseStatsTime = 2;
 
     // right now we just need a decreasing timer, and once enough time (an hour) has elapsed,
     // it should probably send an event out, for things like hunger and happiness 
@@ -32,13 +35,21 @@ public static class GlobalStats
         if (previousHour < DateTime.Now.Hour)
         {
             int differenceInHours = DateTime.Now.Hour - previousHour;
-            for (int i = 0; i < differenceInHours; i++) {  } // add event call to update game here
+            for (int i = 0; i < differenceInHours; i++) { OnHourPassed(); } // add event call to update game here
+            previousHour = DateTime.Now.Hour;
         }*/
 
 
-        int f = DateTime.Now.Hour;
-        elapsedSavefileTime += (int)Time.deltaTime;
+        elapsedTime += Time.deltaTime;
 
+        Debug.Log("time passed: " + elapsedTime);
+        // test code :)
+        if (elapsedTime > decreaseStatsTime) 
+        {
+            // event call for decreasing stats
+            OnHourPassed();
+            elapsedTime = 0;
+        }
 
 
     }

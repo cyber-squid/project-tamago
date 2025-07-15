@@ -11,13 +11,24 @@ public class Critter : MonoBehaviour
 
     string bonusEvolveRequirement;
 
+    void Start()
+    {
+        status = new FriendStats();
+
+        GlobalStats.OnHourPassed += DecreaseAllStats;
+    }
+
     void Update()
     {
         // should probably be moving around on the screen
-        
     }
 
-    // 
+    void DecreaseAllStats()
+    {
+        status.ChangeStat(StatType.happy, StatChangeRange.negativeMinor);
+        status.ChangeStat(StatType.hungry, StatChangeRange.negativeMinor);
+        status.ChangeStat(StatType.health, StatChangeRange.negativeMinor);
+    }
 }
 
 

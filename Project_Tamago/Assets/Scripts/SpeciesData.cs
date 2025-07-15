@@ -11,7 +11,7 @@ public class SpeciesData : ScriptableObject
     public Sprite[] characterIdleSprites;
 
     public SpeciesData[] availableEvolutions; // should be ordered by highest evo requirement
-    public int happinessEvolveRequirement; // this'll probably be a friendstats thing, start at 100 and go down 20 for every mistake? could be raised or lowered through convo
+    public int affectionEvolveRequirement; // this'll probably be a friendstats thing, start at 100 and go down 20 for every mistake? could be raised or lowered through convo
     public string bonusEvolveRequirement; // a phrase that can be set depending on a condition you meet. eg 10 candies == "sweeties", good convos == "close friend"
 
 
@@ -21,12 +21,12 @@ public class SpeciesData : ScriptableObject
     {
         for (int i = 0; i < availableEvolutions.Length; i++) 
         {
-            if (critter.status.happinessEvolveRequirement >= 
-                availableEvolutions[i].happinessEvolveRequirement)
+            if (critter.status.affection >= 
+                availableEvolutions[i].affectionEvolveRequirement)
             {
                 if (availableEvolutions[i].bonusEvolveRequirement != null)
                 {
-                    if (critter.status.bonusEvolveRequirement == availableEvolutions[i].bonusEvolveRequirement)
+                    if (critter.status.currentBonusEvolvePassword == availableEvolutions[i].bonusEvolveRequirement)
                     {
                         // evolve to this species
                     }
