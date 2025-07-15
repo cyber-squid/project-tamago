@@ -39,4 +39,18 @@ public class SpeciesImmutableData : MonoBehaviour
     }
 
     
+
+}
+public enum DepletionRate // should hunger and happy depletion rates be separate?
+{
+    fast,
+    mid,
+    slow
+}
+
+public enum Personality
+{
+    laidback,
+    friendly,
+    shy
 }
