@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FriendStats 
 {
-    string name;
+    string nickname;
 
     int age;
+
+    Personality personality;
 
     int hungry;
     int happy;
@@ -15,4 +17,12 @@ public class FriendStats
 
     public int happinessEvolveRequirement;
     public string bonusEvolveRequirement;
+
+}
+
+public enum Personality
+{
+    laidback,
+    friendly,
+    shy
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Critter : MonoBehaviour
 {
-    SpeciesImmutableData currentSpecies;
+    SpeciesData currentSpecies;
     public FriendStats status;
     int numberOfConvosHad;
 

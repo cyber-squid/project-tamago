@@ -1,22 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeciesImmutableData : MonoBehaviour
+
+[CreateAssetMenu(fileName = "Species Data")]
+public class SpeciesData : ScriptableObject
 {
-    string speciesName;
-    Sprite[] characterIdleSprites;
+    public string speciesName;
+    public Sprite[] characterIdleSprites;
+
+    public SpeciesData[] availableEvolutions; // should be ordered by highest evo requirement
+    public int happinessEvolveRequirement; // this'll probably be a friendstats thing, start at 100 and go down 20 for every mistake? could be raised or lowered through convo
+    public string bonusEvolveRequirement; // a phrase that can be set depending on a condition you meet. eg 10 candies == "sweeties", good convos == "close friend"
 
 
-
-    SpeciesImmutableData[] availableEvolutions; // should be ordered by highest evo requirement
-    int happinessEvolveRequirement; // this'll probably be a friendstats thing, start at 100 and go down 20 for every mistake? could be raised or lowered through convo
-    string bonusEvolveRequirement; // a phrase that can be set depending on a condition you meet. eg 10 candies == "sweeties", good convos == "close friend"
-
-
-    //GlobalStats.speciesGeneralData
-    //Personality personality; this.availableEvolutions
-
+    public DepletionRate depletionRate;
 
     public void OnEvolution(Critter critter)
     {
@@ -37,10 +36,8 @@ public class SpeciesImmutableData : MonoBehaviour
             }
         }
     }
-
-    
-
 }
+
 public enum DepletionRate // should hunger and happy depletion rates be separate?
 {
     fast,
@@ -48,11 +45,3 @@ public enum DepletionRate // should hunger and happy depletion rates be separate
     slow
 }
 
-public enum Personality
-{
-    laidback,
-    friendly,
-    shy
-}
-
-// completely superfluous edit here
