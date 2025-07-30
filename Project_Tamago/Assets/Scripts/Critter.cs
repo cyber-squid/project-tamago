@@ -15,7 +15,7 @@ public class Critter : MonoBehaviour
     {
         status = new FriendStats();
 
-        GlobalStats.OnHourPassed += DecreaseAllStats;
+        TimeTracker.OnHourPassed += DecreaseAllStats;
     }
 
     void Update()

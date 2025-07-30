@@ -24,19 +24,24 @@ public class FriendStats
         {
             case StatType.hungry:
                 hungry += (int)changeRange;
+                hungry = RoundOffStat(hungry);
                 break;
             case StatType.happy:
                 happy += (int)changeRange;
+                happy = RoundOffStat(happy);
                 break;
             case StatType.health:
                 health += (int)changeRange;
+                health = RoundOffStat(health);
                 break;
             case StatType.affection:
                 affection += (int)changeRange;
+                affection = RoundOffStat(affection);
                 break;
             default:
                 break;
         }
+        Debug.Log(hungry);
     }
 
     public void ChangeStat(StatType statType, int customChange) // in case something really good or really bad happens for your buddy.
@@ -45,22 +50,35 @@ public class FriendStats
         {
             case StatType.hungry:
                 hungry += customChange;
+                hungry = RoundOffStat(hungry);
                 break;
             case StatType.happy:
                 happy += customChange;
+                happy = RoundOffStat(happy);
                 break;
             case StatType.health:
                 health += customChange;
+                health = RoundOffStat(health);
                 break;
             case StatType.affection:
                 affection += customChange;
+                affection = RoundOffStat(affection);
                 break;
             default:
                 break;
         }
     }
 
+
+    int RoundOffStat(int stat)
+    {
+        if (stat > 100) { stat = 100; }
+        if (stat < 0) {  stat = 0; }
+        return stat;
+    }
 }
+
+
 
 public enum Personality
 {
