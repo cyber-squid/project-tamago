@@ -8,7 +8,7 @@ public abstract class GenericActivity : MonoBehaviour
     public delegate void ActivityStarted();
     public static event ActivityStarted OnActivityStartedOrEnded;
 
-    public void OnActivityButtonClick()
+    public void StartActivity()
     {
         OnActivityStartedOrEnded();
         ChangeScreen();

@@ -25,6 +25,7 @@ public class FriendStats
             case StatType.hungry:
                 hungry += (int)changeRange;
                 hungry = RoundOffStat(hungry);
+                Debug.Log(hungry);
                 break;
             case StatType.happy:
                 happy += (int)changeRange;
@@ -37,11 +38,12 @@ public class FriendStats
             case StatType.affection:
                 affection += (int)changeRange;
                 affection = RoundOffStat(affection);
+                Debug.Log(affection);
                 break;
             default:
                 break;
         }
-        Debug.Log(hungry);
+        
     }
 
     public void ChangeStat(StatType statType, int customChange) // in case something really good or really bad happens for your buddy.
@@ -65,6 +67,7 @@ public class FriendStats
                 affection = RoundOffStat(affection);
                 break;
             default:
+                Debug.Log("nothing happened for this stat.");
                 break;
         }
     }
@@ -97,5 +100,6 @@ public enum StatType
 public enum StatChangeRange
 {
     positiveMajor = 35, positiveMid = 20, positiveMinor = 10,
-    negativeMajor = -35, negativeMid = -20, negativeMinor = -10
+    negativeMajor = -35, negativeMid = -20, negativeMinor = -10,
+    noEffect = 0
 }
