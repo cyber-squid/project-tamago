@@ -4,48 +4,36 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // food screen should display a few options (buttons) for food, effect on the tama depends on the food.
-public class FoodMenuActivity : GenericActivity
+public class FoodMenuActivity : MinimenuActivity
 {
-    [SerializeField] GameObject foodMenu;
-    [SerializeField] GameObject confirmBox;
-    [SerializeField] GameObject backButton;
-    [SerializeField] FoodMenuSlot[] menuButtonSlots;
+
     FoodMenuObj currentSelectedFood;
-
-    private void Start()
-    {
-        for (int i = 0; i < menuButtonSlots.Length; i++) 
-        { 
-            menuButtonSlots[i].foodMenuActivity = this;
-
-            Button button = menuButtonSlots[i].gameObject.GetComponent<Button>();
-            button.onClick.AddListener(menuButtonSlots[i].OpenConfirmationBox);
-        }
-
-        foodMenu.SetActive(false);
-    }
+    [SerializeField] GameObject confirmChoiceBox;
 
     internal override void ChangeScreen()
     {
-        // activate food options page
-
-        foodMenu.SetActive(true);
-
-        // uhh how do i make this less goofy
-        //GameStateManager.Instance.CritterReference.status.ChangeStat(StatType.hungry, StatChangeRange.positiveMid);
-        //Debug.Log("fed buddy!");
+        menuPanel.SetActive(true);
     }
 
-
-    public void OpenConfirmationBox(FoodMenuSlot clickedSlot)
+    // time to open up the confirm selection box
+    public override void MenuButtonClicked(MenuSlot clickedSlot)
     {
-        currentSelectedFood = clickedSlot.foodItem;
-        confirmBox.SetActive(true);
+        FoodMenuSlot slot = clickedSlot as FoodMenuSlot;
 
-        backButton.SetActive(false);
-        for (int i = 0; i < menuButtonSlots.Length; i++) { menuButtonSlots[i].gameObject.SetActive(false); }
+        if (slot != null)
+        {
+            currentSelectedFood = slot.foodItem;
+            confirmChoiceBox.SetActive(true);
+
+            backButton.SetActive(false); // again, don't want the player clicking those right now
+            for (int i = 0; i < menuButtonSlots.Length; i++) { menuButtonSlots[i].gameObject.SetActive(false); }
+        }
     }
 
+
+    // these two funcs are called from buttons that they've been assigned to in the inspector,
+    // which is the easiest way to do it without technically hard coding it, but it's not really ideal
+    // since it's not obvious i think that they get called that way. 
     public void ConfirmAndEatSelectedFood()
     {
         Feed();
@@ -56,7 +44,7 @@ public class FoodMenuActivity : GenericActivity
     public void CloseConfirmationBox()
     {
         currentSelectedFood = null;
-        confirmBox.SetActive(false);
+        confirmChoiceBox.SetActive(false);
 
         backButton.SetActive(true);
         for (int i = 0; i < menuButtonSlots.Length; i++) { menuButtonSlots[i].gameObject.SetActive(true); }
@@ -77,6 +65,7 @@ public class FoodMenuActivity : GenericActivity
 
     internal override void ActivityFinishCleanup()
     {
-        foodMenu.SetActive(false);
+        menuPanel.SetActive(false);
     }
+
 }

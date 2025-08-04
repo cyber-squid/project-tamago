@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chimkem
   m_EditorClassIdentifier: 
   foodImage: {fileID: 0}
-  satisfyingness: 0
-  deliciousness: 0
-  healthiness: 0
+  satisfyingness: 35
+  deliciousness: 35
+  healthiness: 10
   caring: 0
