@@ -5,17 +5,23 @@ using UnityEngine;
 
 public class Critter : MonoBehaviour
 {
-    SpeciesData currentSpecies;
+    [SerializeField] SpeciesData currentSpecies; // exposing to ui only for debugging!!!
+    public SpeciesData CurrentSpecies { get { return currentSpecies; } }
     public FriendStats status;
     int numberOfConvosHad;
 
     string bonusEvolveRequirement;
 
+    SpriteRenderer spriteRenderer;
+
     void Start()
     {
         status = new FriendStats();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        TimeTracker.OnHourPassed += DecreaseAllStats;
+        spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
+
+        TimeTracker.OnHourPassed += DecreaseAllStats; 
     }
 
     void Update()

@@ -10,9 +10,9 @@ public class FriendStats
 
     Personality personality;
 
-    int hungry = 50;
-    int happy = 50;
-    int health = 50;
+    public int hungry { get; private set; }
+    public int happy { get; private set; }
+    public int health { get; private set; }
     public int affection {  get; private set; }
 
     public string currentBonusEvolvePassword { get; private set; }
