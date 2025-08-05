@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speciesName: Pudgi
   characterIdleSprites:
-  - {fileID: 21300000, guid: a3068877a05dd384d8f7bee6f865f8a3, type: 3}
+  - {fileID: 21300000, guid: b521a59c8ae9b0144af270fba2d173af, type: 3}
   availableEvolutions: []
-  happinessEvolveRequirement: 50
+  affectionEvolveRequirement: 0
   bonusEvolveRequirement: 
   depletionRate: 2

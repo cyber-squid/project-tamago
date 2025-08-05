@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FriendStats 
 {
-    string nickname;
+    public string personalName { get; private set; }
 
-    int age;
+    public int age { get; private set; }
 
-    Personality personality;
+    public Personality personality { get; private set; }
 
     public int hungry { get; private set; }
     public int happy { get; private set; }
@@ -17,6 +17,11 @@ public class FriendStats
 
     public string currentBonusEvolvePassword { get; private set; }
 
+    public FriendStats(string name) 
+    {
+        personalName = name;
+        // maybe decide personality here?
+    }
 
     public void ChangeStat(StatType statType, StatChangeRange changeRange)
     {

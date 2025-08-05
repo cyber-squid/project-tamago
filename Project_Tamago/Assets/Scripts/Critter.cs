@@ -16,7 +16,7 @@ public class Critter : MonoBehaviour
 
     void Start()
     {
-        status = new FriendStats();
+        status = new FriendStats("Squishy");
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
