@@ -54,10 +54,10 @@ public class FoodMenuActivity : MinimenuActivity
     {
         if (currentSelectedFood == null) { return; }
 
-        GameStateManager.Instance.CritterReference.status.ChangeStat(StatType.hungry, currentSelectedFood.satisfyingness);
-        GameStateManager.Instance.CritterReference.status.ChangeStat(StatType.happy, currentSelectedFood.deliciousness);
-        GameStateManager.Instance.CritterReference.status.ChangeStat(StatType.health, currentSelectedFood.healthiness);
-        GameStateManager.Instance.CritterReference.status.ChangeStat(StatType.affection, currentSelectedFood.caring);
+        GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.hungry, currentSelectedFood.satisfyingness);
+        GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.happy, currentSelectedFood.deliciousness);
+        GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.health, currentSelectedFood.healthiness);
+        GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.affection, currentSelectedFood.caring);
 
         Debug.Log("fed buddy!");
     }

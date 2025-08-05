@@ -10,7 +10,7 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance { get; private set; }
 
-    public Critter CritterReference { get { return critterRef; } }
+    public Critter CritterRef { get { return critterRef; } }
     [SerializeField] Critter critterRef;
 
     [SerializeField] Button[] allActivityButtons;

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class StatsMenuActivity : GenericActivity
 {
     [SerializeField] GameObject menuPanel;
-    Critter critterInfo;
 
     [SerializeField] SpriteRenderer critterPortrait;
     [SerializeField] TextMeshProUGUI critterName;
@@ -25,7 +24,6 @@ public class StatsMenuActivity : GenericActivity
     private void Start()
     {
         menuPanel.SetActive(false);
-        critterInfo = FindObjectOfType<Critter>().GetComponent<Critter>();
 
         hungryMeter.maxValue = 100;
         happyMeter.maxValue = 100;
@@ -44,22 +42,22 @@ public class StatsMenuActivity : GenericActivity
 
     void UpdateCritterSpeciesInfo()
     {
-        critterPortrait.sprite = critterInfo.CurrentSpecies.characterIdleSprites[0];
+        critterPortrait.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterIdleSprites[0];
 
-        critterName.text = critterInfo.status.personalName;
-        critterSpecies.text = "the " + critterInfo.CurrentSpecies.name;
+        critterName.text = GameStateManager.Instance.CritterRef.status.personalName;
+        critterSpecies.text = "the " + GameStateManager.Instance.CritterRef.CurrentSpecies.name;
 
-        critterPersonality.text = critterInfo.status.personality.ToString();
+        critterPersonality.text = GameStateManager.Instance.CritterRef.status.personality.ToString();
     }
 
     void UpdateCritterIndividualStatsInfo()
     {
-        critterAge.text = critterInfo.status.age.ToString() + " yrs";
+        critterAge.text = GameStateManager.Instance.CritterRef.status.age.ToString() + " yrs";
 
-        hungryMeter.value = critterInfo.status.hungry;
-        happyMeter.value = critterInfo.status.happy;
-        healthMeter.value = critterInfo.status.health;
-        affectionMeter.value = critterInfo.status.affection;
+        hungryMeter.value = GameStateManager.Instance.CritterRef.status.hungry;
+        happyMeter.value = GameStateManager.Instance.CritterRef.status.happy;
+        healthMeter.value = GameStateManager.Instance.CritterRef.status.health;
+        affectionMeter.value = GameStateManager.Instance.CritterRef.status.affection;
     }
 
 

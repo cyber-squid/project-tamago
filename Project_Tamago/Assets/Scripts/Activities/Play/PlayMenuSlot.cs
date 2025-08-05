@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class PlayMenuSlot : MenuSlot
 {
-    [SerializeField] GameObject minigameInThisSlot;
-    public GameObject minigameItem { get { return minigameInThisSlot; } }
+    [SerializeField] Minigame minigameScreenInThisSlot;
+    public Minigame minigamePanel { get { return minigameScreenInThisSlot; } }
 }
