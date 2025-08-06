@@ -12,7 +12,7 @@ public class FoodMenuActivity : MinimenuActivity
 
     internal override void ChangeScreen()
     {
-        menuPanel.SetActive(true);
+        mainScreen.SetActive(true);
     }
 
     // time to open up the confirm selection box
@@ -65,7 +65,7 @@ public class FoodMenuActivity : MinimenuActivity
 
     internal override void ActivityFinishCleanup()
     {
-        menuPanel.SetActive(false);
+        mainScreen.SetActive(false);
     }
 
 }

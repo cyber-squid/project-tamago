@@ -7,8 +7,6 @@ using UnityEngine.UI;
 // gives you all the current info on your buddy when you open it.
 public class StatsMenuActivity : GenericActivity
 {
-    [SerializeField] GameObject menuPanel;
-
     [SerializeField] SpriteRenderer critterPortrait;
     [SerializeField] TextMeshProUGUI critterName;
     [SerializeField] TextMeshProUGUI critterSpecies;
@@ -23,7 +21,7 @@ public class StatsMenuActivity : GenericActivity
 
     private void Start()
     {
-        menuPanel.SetActive(false);
+        mainScreen.SetActive(false);
 
         hungryMeter.maxValue = 100;
         happyMeter.maxValue = 100;
@@ -37,7 +35,7 @@ public class StatsMenuActivity : GenericActivity
         UpdateCritterSpeciesInfo();
         UpdateCritterIndividualStatsInfo();
 
-        menuPanel.SetActive(true);
+        mainScreen.SetActive(true);
     }
 
     void UpdateCritterSpeciesInfo()
@@ -63,6 +61,6 @@ public class StatsMenuActivity : GenericActivity
 
     internal override void ActivityFinishCleanup()
     {
-        menuPanel.SetActive(false);
+        mainScreen.SetActive(false);
     }
 }

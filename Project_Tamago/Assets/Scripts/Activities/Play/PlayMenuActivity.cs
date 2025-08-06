@@ -11,7 +11,7 @@ public class PlayMenuActivity : MinimenuActivity
     // i pulled it into its own deriving class :)
     internal override void ChangeScreen()
     {
-        menuPanel.SetActive(true);
+        mainScreen.SetActive(true);
     }
 
     // time to start a minigame!
@@ -21,7 +21,7 @@ public class PlayMenuActivity : MinimenuActivity
 
         if (slot != null) 
         {
-            menuPanel.SetActive(false);
+            mainScreen.SetActive(false);
 
             currentActiveMinigame = slot.minigamePanel;
             currentActiveMinigame.gameObject.SetActive(true);
@@ -35,11 +35,11 @@ public class PlayMenuActivity : MinimenuActivity
         currentActiveMinigame.gameObject.SetActive(false);
         currentActiveMinigame = null;
 
-        menuPanel.SetActive(true);
+        mainScreen.SetActive(true);
     }
 
     internal override void ActivityFinishCleanup()
     {
-        menuPanel.SetActive(false);
+        mainScreen.SetActive(false);
     }
 }

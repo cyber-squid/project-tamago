@@ -8,6 +8,7 @@ public abstract class GenericActivity : MonoBehaviour
     public delegate void ActivityStarted();
     public static event ActivityStarted OnActivityStartedOrEnded;
 
+    [SerializeField] internal GameObject mainScreen; 
 
     public void StartActivity()
     {

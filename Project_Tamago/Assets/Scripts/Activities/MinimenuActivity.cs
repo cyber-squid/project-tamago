@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public abstract class MinimenuActivity : GenericActivity
 {
-
-    [SerializeField] internal GameObject menuPanel;
     [SerializeField] internal GameObject backButton;
     [SerializeField] internal MenuSlot[] menuButtonSlots;
 
@@ -21,7 +19,7 @@ public abstract class MinimenuActivity : GenericActivity
             button.onClick.AddListener(menuButtonSlots[i].MenuButtonClicked);
         }
 
-        menuPanel.SetActive(false);
+        mainScreen.SetActive(false);
     }
 
     public abstract void MenuButtonClicked(MenuSlot slot);
