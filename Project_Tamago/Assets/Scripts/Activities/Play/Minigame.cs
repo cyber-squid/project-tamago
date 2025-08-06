@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
+    public Sprite minigameMenuImage;
     [HideInInspector] public PlayMenuActivity playMenu;
     int successiveTimesWon;
 

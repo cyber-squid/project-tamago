@@ -9,6 +9,7 @@ public class FoodMenuActivity : MinimenuActivity
 
     FoodMenuObj currentSelectedFood;
     [SerializeField] GameObject confirmChoiceBox;
+    [SerializeField] TMPro.TextMeshProUGUI confirmChoiceText;
 
     internal override void ChangeScreen()
     {
@@ -23,6 +24,7 @@ public class FoodMenuActivity : MinimenuActivity
         if (slot != null)
         {
             currentSelectedFood = slot.foodItem;
+            confirmChoiceText.text = $"Eat {currentSelectedFood.name}?";
             confirmChoiceBox.SetActive(true);
 
             backButton.SetActive(false); // again, don't want the player clicking those right now

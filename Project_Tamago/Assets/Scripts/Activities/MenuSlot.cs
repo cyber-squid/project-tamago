@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MenuSlot : MonoBehaviour
+public abstract class MenuSlot : MonoBehaviour
 {
     [HideInInspector] public MinimenuActivity minimenu;
 
@@ -10,4 +11,6 @@ public class MenuSlot : MonoBehaviour
     {
         minimenu.MenuButtonClicked(this);
     }
+
+    public abstract void SetUpSlotImage();
 }

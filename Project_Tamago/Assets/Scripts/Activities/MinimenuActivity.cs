@@ -15,6 +15,8 @@ public abstract class MinimenuActivity : GenericActivity
         {
             menuButtonSlots[i].minimenu = this;
 
+            menuButtonSlots[i].SetUpSlotImage();
+
             Button button = menuButtonSlots[i].gameObject.GetComponent<Button>();
             button.onClick.AddListener(menuButtonSlots[i].MenuButtonClicked);
         }
