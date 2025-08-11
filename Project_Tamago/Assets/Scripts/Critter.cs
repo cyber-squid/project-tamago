@@ -14,6 +14,7 @@ public class Critter : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+
     void Start()
     {
         status = new FriendStats("Squishy");

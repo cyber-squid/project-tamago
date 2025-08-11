@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// hmm. i didn't actually think about the structure of activities.
 public abstract class GenericActivity : MonoBehaviour
 {
     public delegate void ActivityStarted();
