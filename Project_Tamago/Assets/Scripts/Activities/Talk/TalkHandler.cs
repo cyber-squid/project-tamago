@@ -31,10 +31,14 @@ public class TalkDecisionHandler
 
     public TalkDecisionHandler() 
     {
-        string[] loadedText = new string[2];
+        dialogueDict = new Dictionary<string, Dialogue>();
+
+        string[] loadedText = new string[3];
         loadedText[0] = "hi";
         loadedText[1] = "its me";
-        dialogueDict.Add("testtext", new Dialogue(loadedText));
+        loadedText[2] = "blehhh";
+        Dialogue dialogue = new Dialogue(loadedText);
+        dialogueDict.Add("testtext", dialogue);
     }
     /*
      * queryhandler 

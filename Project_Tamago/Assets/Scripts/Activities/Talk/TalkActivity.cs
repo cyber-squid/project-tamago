@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class TalkActivity : GenericActivity
@@ -20,22 +21,39 @@ public class TalkActivity : GenericActivity
     // in certain cases, we'd want the game to force a talk, eg if something calls for checking a query that would prompt the force talk if it passes.
 
     TalkDecisionHandler talkDecisionHandler;
+    Dialogue currentDialogue;
+    int currentLine;
+
+    [SerializeField] TextMeshProUGUI dialogueUIText;
+
+    void Start()
+    {
+        talkDecisionHandler = new TalkDecisionHandler();
+    }
 
     internal override void ChangeScreen()
     {
         // should probably calculate, or retreive current query somewhere here?
-        if (talkDecisionHandler.dialogueDict.ContainsKey("testtext"))
-        {
-            
-        }
+        currentDialogue = talkDecisionHandler.DetermineDialogue("testtext");
+        dialogueUIText.text = currentDialogue.linesToSay[0];
+        currentLine = 0; 
+
         mainScreen.SetActive(true);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) 
-        { 
-            EndActivity();
+        {
+            currentLine += 1;
+
+            if (currentLine >= currentDialogue.linesToSay.Length)
+            {
+                currentDialogue.OnSaid();
+                EndActivity();
+            }
+            else
+                dialogueUIText.text = currentDialogue.linesToSay[currentLine];
         }
     }
 
