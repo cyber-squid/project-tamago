@@ -20,7 +20,8 @@ public class TalkActivity : GenericActivity
 
     // in certain cases, we'd want the game to force a talk, eg if something calls for checking a query that would prompt the force talk if it passes.
 
-    TalkDecisionHandler talkDecisionHandler;
+    [SerializeField] TalkDecisionHandler talkDecisionHandler;
+    public static Criteria activeDialogueCriteria;
     Dialogue currentDialogue;
     int currentLine;
 
@@ -29,12 +30,13 @@ public class TalkActivity : GenericActivity
     void Start()
     {
         talkDecisionHandler = new TalkDecisionHandler();
+        activeDialogueCriteria = new Criteria();
     }
 
     internal override void ChangeScreen()
     {
         // should probably calculate, or retreive current query somewhere here?
-        currentDialogue = talkDecisionHandler.DetermineDialogue("testtext");
+        currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria);
         dialogueUIText.text = currentDialogue.linesToSay[0];
         currentLine = 0; 
 
