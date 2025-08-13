@@ -30,7 +30,7 @@ public class FriendStats
         {
             case StatType.hungry:
                 hungry += (int)changeRange;
-                
+                SetHungerDialogueState();
                 hungry = RoundOffStat(hungry);
                 Debug.Log(hungry);
                 break;
@@ -91,21 +91,21 @@ public class FriendStats
     {
         if (20 < hungry && hungry < 51)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"].stateBool = true;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = true;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = false;
         }
         else if (20 > hungry)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"].stateBool = true;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"].stateBool = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = true;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = false;
         }
         else if (hungry > 51)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"].stateBool = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"].stateBool = true;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = true;
         }
     }
 }

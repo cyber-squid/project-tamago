@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,19 +28,19 @@ using Unity.VisualScripting;
 [System.Serializable]
 public class TalkDecisionHandler
 {
-    public Dictionary<Criteria, Dialogue> dialogueCriteriaPairs; // = new Dictionary<string, Dialogue>();
+    public Dictionary<string, Dialogue> dialogueCriteriaPairs; // = new Dictionary<string, Dialogue>();
     public List<Criteria> criteriaList;
     public List<Dialogue> dialogueList;
 
     public TalkDecisionHandler() 
     {
-        dialogueCriteriaPairs = new Dictionary<Criteria, Dialogue>();
+        dialogueCriteriaPairs = new Dictionary<string, Dialogue>();
 
         SetUpCriteria(); SetUpDialogue();
 
         for (int i = 0; i < dialogueList.Count; i++)
         {
-            dialogueCriteriaPairs.Add(criteriaList[i], dialogueList[i]);
+            dialogueCriteriaPairs.Add(criteriaList[i].CriteriaToString(), dialogueList[i]);
         }
     }
 
@@ -48,6 +49,19 @@ public class TalkDecisionHandler
         criteriaList = new List<Criteria>() { new Criteria(), new Criteria(), new Criteria() };
 
 
+        criteriaList[0].gameStateDict["hungerIsAt20OrLower"] = true;
+        criteriaList[0].gameStateDict["hungerIsBetween21And50"] = false;
+        criteriaList[0].gameStateDict["hungerIsAt51OrHigher"] = false;
+
+        criteriaList[1].gameStateDict["hungerIsAt20OrLower"] = false;
+        criteriaList[1].gameStateDict["hungerIsBetween21And50"] = true;
+        criteriaList[1].gameStateDict["hungerIsAt51OrHigher"] = false;
+
+        criteriaList[2].gameStateDict["hungerIsAt20OrLower"] = false;
+        criteriaList[2].gameStateDict["hungerIsBetween21And50"] = false;
+        criteriaList[2].gameStateDict["hungerIsAt51OrHigher"] = true;
+
+        /*
         criteriaList[0].gameStateDict["hungerIsAt20OrLower"].stateBool = true;
         criteriaList[0].gameStateDict["hungerIsBetween21And50"].stateBool = false;
         criteriaList[0].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
@@ -58,7 +72,7 @@ public class TalkDecisionHandler
 
         criteriaList[2].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
         criteriaList[2].gameStateDict["hungerIsBetween21And50"].stateBool = false;
-        criteriaList[2].gameStateDict["hungerIsAt51OrHigher"].stateBool = true;
+        criteriaList[2].gameStateDict["hungerIsAt51OrHigher"].stateBool = true;*/
     }
     //
     public void SetUpDialogue()
@@ -71,7 +85,7 @@ public class TalkDecisionHandler
         };
     }
 
-    public Dialogue DetermineDialogue(Criteria key)
+    public Dialogue DetermineDialogue(string key)
     {
         return dialogueCriteriaPairs[key];
     }
@@ -79,7 +93,7 @@ public class TalkDecisionHandler
 
 public class Criteria
 {
-    public Dictionary<string, State> gameStateDict;
+    /*public Dictionary<string, State> gameStateDict;
 
     public Criteria() 
     { 
@@ -91,6 +105,29 @@ public class Criteria
             //{ "happyLevel", new IntState(0) },
             //{ "justWokeUp", new BoolState(true) }
         };
+    }*/
+
+    public Dictionary<string, bool> gameStateDict;
+
+    public Criteria()
+    {
+        gameStateDict = new Dictionary<string, bool>
+        {
+            { "hungerIsAt20OrLower", false },
+            { "hungerIsBetween21And50", false },
+            { "hungerIsAt51OrHigher", false },
+            //{ "happyLevel", new IntState(0) },
+            //{ "justWokeUp", new BoolState(true) }
+        };
+    }
+
+    // thank you random stackexchange person. you saved a life today
+    public string CriteriaToString()
+    {
+        var items = from kvp in gameStateDict
+                    select kvp.Key + "=" + kvp.Value;
+
+        return "{" + string.Join(",", items) + "}";
     }
 }
 

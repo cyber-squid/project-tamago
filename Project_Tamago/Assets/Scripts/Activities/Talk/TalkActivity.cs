@@ -23,6 +23,7 @@ public class TalkActivity : GenericActivity
     [SerializeField] TalkDecisionHandler talkDecisionHandler;
     public static Criteria activeDialogueCriteria;
     Dialogue currentDialogue;
+    Dialogue failsafeDialogue;
     int currentLine;
 
     [SerializeField] TextMeshProUGUI dialogueUIText;
@@ -31,12 +32,20 @@ public class TalkActivity : GenericActivity
     {
         talkDecisionHandler = new TalkDecisionHandler();
         activeDialogueCriteria = new Criteria();
+
+        activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = true;
+        activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = false;
+        activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = false;
+
+        failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" });
     }
 
     internal override void ChangeScreen()
     {
         // should probably calculate, or retreive current query somewhere here?
-        currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria);
+        currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria.CriteriaToString());
+        if (currentDialogue == null) currentDialogue = failsafeDialogue;
+
         dialogueUIText.text = currentDialogue.linesToSay[0];
         currentLine = 0; 
 
