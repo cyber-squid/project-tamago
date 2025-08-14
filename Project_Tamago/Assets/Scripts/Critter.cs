@@ -27,6 +27,16 @@ public class Critter : MonoBehaviour
         TimeTracker.OnHourPassed += DecreaseAllStats; 
     }
 
+    void Update()
+    {
+        // should probably be moving around on the screen
+
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            status.ChangeStat(StatType.affection, StatChangeRange.positiveMajor);
+            StartEvolution();
+        }
+    }
 
     void OnHatch()
     {
@@ -47,16 +57,24 @@ public class Critter : MonoBehaviour
         return possibleSpeciesToHatchAs[Random.Range(0, possibleSpeciesToHatchAs.Length)];
     }
 
+    void StartEvolution()
+    {
+        // should start a little animation here 
+        currentSpecies.OnEvolution(this);
+    }
+
+    public void FinishEvolution(SpeciesData newSpecies)
+    {
+        currentSpecies = newSpecies;
+        spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
+    }
+
 
     public void ToggleVisibility(bool isVisible)
     {
         spriteRenderer.enabled = isVisible;
     }
 
-    void Update()
-    {
-        // should probably be moving around on the screen
-    }
 
     void DecreaseAllStats()
     {

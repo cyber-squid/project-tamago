@@ -25,15 +25,18 @@ public class SpeciesData : ScriptableObject
             if (critter.status.affection >= 
                 availableEvolutions[i].affectionEvolveRequirement)
             {
-                if (availableEvolutions[i].bonusEvolveRequirement != null)
+                if (availableEvolutions[i].bonusEvolveRequirement != "")
                 {
                     if (critter.status.currentBonusEvolvePassword == availableEvolutions[i].bonusEvolveRequirement)
                     {
                         // evolve to this species
+                        critter.FinishEvolution(availableEvolutions[i]);
                     }
                     else break;
                 }
                 //evolve to this species
+                critter.FinishEvolution(availableEvolutions[i]);
+                break;
             }
         }
     }
