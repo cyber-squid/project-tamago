@@ -72,9 +72,13 @@ public class TalkDecisionHandler
     {
         dialogueList = new List<Dialogue>()
         {
-            new Dialogue(new string[2] {"dawg im so hecking hungry like holy moly", "can you pls feed me like. rn ;-;"}),
-            new Dialogue(new string[2] {"hey um i'm not crazy hungy but i'm hungy", "would you mind giving me something to eat?"}),
-            new Dialogue(new string[3] {"yippee that food was so yummy btw :3", "v nice stuff, would recommend", "honestly i could go for more o<o"})
+            // need to figure out a way to force a dialogue to have the same amount of expressions as lines.
+            new Dialogue(new string[] {"dawg im so hecking hungry like holy moly", "can you pls feed me like. rn ;-;"}, 
+                         new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning }),
+            new Dialogue(new string[] {"hey um i'm not crazy hungy but i'm hungy", "would you mind giving me something to eat?"},
+                         new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning }),
+            new Dialogue(new string[] {"yippee that food was so yummy btw :3", "v nice stuff, would recommend", "honestly i could go for more o<o"},
+                         new TalkExpression[] { TalkExpression.smiling, TalkExpression.smiling, TalkExpression.smiling })
         };
     }
 }

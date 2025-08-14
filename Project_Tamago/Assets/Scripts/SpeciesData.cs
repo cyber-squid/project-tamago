@@ -9,6 +9,7 @@ public class SpeciesData : ScriptableObject
 {
     public string speciesName;
     public Sprite[] characterIdleSprites;
+    public Sprite[] characterTalkSprites = new Sprite[11]; // number of expressions there are. how to get from the enum??
 
     public SpeciesData[] availableEvolutions; // should be ordered by highest evo requirement
     public int affectionEvolveRequirement; // this'll probably be a friendstats thing, start at 100 and go down 20 for every mistake? could be raised or lowered through convo
@@ -43,5 +44,21 @@ public enum DepletionRate // should hunger and happy depletion rates be separate
     fast,
     mid,
     slow
+}
+
+public enum TalkExpression
+{
+    smiling,
+    joy,
+    embarrassedSmiling,
+    openMouth,
+    confused,
+    shocked,
+    expressionless,
+    frowning,
+    upset,
+    pained,
+    frustrated,
+    disinterested
 }
 

@@ -10,24 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36857baefe5704440b5f2c7a4cc2a3e8, type: 3}
-  m_Name: Pudgi
+  m_Name: Mlemeow
   m_EditorClassIdentifier: 
-  speciesName: Pudgi
+  speciesName: Mlemeow
   characterIdleSprites:
-  - {fileID: 21300000, guid: b521a59c8ae9b0144af270fba2d173af, type: 3}
-  characterTalkSprites:
-  - {fileID: 21300000, guid: b521a59c8ae9b0144af270fba2d173af, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 21300000, guid: e03aa90abf427254398ce8f08b897291, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  characterTalkSprites: []
   availableEvolutions: []
   affectionEvolveRequirement: 0
   bonusEvolveRequirement: 
-  depletionRate: 2
+  depletionRate: 0

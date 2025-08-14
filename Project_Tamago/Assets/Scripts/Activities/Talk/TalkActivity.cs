@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TalkActivity : GenericActivity
 {
@@ -27,6 +28,7 @@ public class TalkActivity : GenericActivity
     int currentLine;
 
     [SerializeField] TextMeshProUGUI dialogueUIText;
+    [SerializeField] SpriteRenderer largeCritterSprite;
 
     void Start()
     {
@@ -37,20 +39,27 @@ public class TalkActivity : GenericActivity
         activeDialogueCriteria.gameStateBools["hungerIsBetween21And50"] = false;
         activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = false;
 
-        failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" });
+        failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" }, new TalkExpression[] {TalkExpression.expressionless});
     }
 
     internal override void ChangeScreen()
     {
         // should probably calculate, or retreive current query somewhere here?
         currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria.CriteriaToString());
-        if (currentDialogue == null) currentDialogue = failsafeDialogue;
+
+        if (currentDialogue == null)
+            currentDialogue = failsafeDialogue;
 
         dialogueUIText.text = currentDialogue.linesToSay[0];
-        currentLine = 0; 
+        currentLine = 0;
+
+
+        largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.expressions[currentLine]];
+        GameStateManager.Instance.CritterRef.ToggleVisibility(false);
 
         mainScreen.SetActive(true);
     }
+
 
     private void Update()
     {
@@ -64,13 +73,17 @@ public class TalkActivity : GenericActivity
                 EndActivity();
             }
             else
+            {
                 dialogueUIText.text = currentDialogue.linesToSay[currentLine];
+                largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.expressions[currentLine]]; // absolute unit of a line. please make it shorter
+            }
         }
     }
 
 
     internal override void ActivityFinishCleanup()
     {
+        GameStateManager.Instance.CritterRef.ToggleVisibility(true);
         mainScreen.SetActive(false);
     }
 }

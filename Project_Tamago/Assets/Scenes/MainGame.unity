@@ -529,7 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3608a3c4ff7444d8f507be7c2554da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpecies: {fileID: 11400000, guid: 1f8a1b8b223586e4e896d7cd7e9f1898, type: 2}
+  currentSpecies: {fileID: 0}
+  possibleSpeciesToHatchAs:
+  - {fileID: 11400000, guid: 1f8a1b8b223586e4e896d7cd7e9f1898, type: 2}
+  - {fileID: 11400000, guid: d0ce631116d89c04381fd3ae9d202af4, type: 2}
 --- !u!212 &110764613
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -572,7 +575,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.97735846, g: 0.861704, b: 0.39647555, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4050,6 +4053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainScreen: {fileID: 665920770}
   dialogueUIText: {fileID: 714007535}
+  largeCritterSprite: {fileID: 1124792609}
 --- !u!1 &925760029
 GameObject:
   m_ObjectHideFlags: 0

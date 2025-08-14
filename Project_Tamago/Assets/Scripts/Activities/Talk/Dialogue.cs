@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 public class Dialogue
 {
     public string[] linesToSay;
+    public TalkExpression[] expressions;
 
-    public Dialogue(string[] linesToSay)
+    public Dialogue(string[] linesToSay, TalkExpression[] expressions)
     {
         this.linesToSay = linesToSay;
+        this.expressions = expressions;
     }
 
     public virtual void OnSaid() { }

@@ -7,6 +7,8 @@ public class Critter : MonoBehaviour
 {
     [SerializeField] SpeciesData currentSpecies; // exposing to ui only for debugging!!!
     public SpeciesData CurrentSpecies { get { return currentSpecies; } }
+    [SerializeField] SpeciesData[] possibleSpeciesToHatchAs;
+
     public FriendStats status;
     int numberOfConvosHad;
 
@@ -17,12 +19,38 @@ public class Critter : MonoBehaviour
 
     void Start()
     {
-        status = new FriendStats("Squishy");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // have a little animation play here first
+        OnHatch();
 
-        spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
+        status = new FriendStats("Squishy");
 
         TimeTracker.OnHourPassed += DecreaseAllStats; 
+    }
+
+
+    void OnHatch()
+    {
+        currentSpecies = DecideHatchSpecies();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
+
+        // have the player input their new buddy's name at this point
+
+    }
+
+    SpeciesData DecideHatchSpecies()
+    {
+        if (possibleSpeciesToHatchAs == null) 
+        { Debug.Log("YOU DIDN'T SET STARTING SPECIES IN CRITTER SCRIPT INSPECTOR!!");  return null; }
+
+        return possibleSpeciesToHatchAs[Random.Range(0, possibleSpeciesToHatchAs.Length)];
+    }
+
+
+    public void ToggleVisibility(bool isVisible)
+    {
+        spriteRenderer.enabled = isVisible;
     }
 
     void Update()
