@@ -16,13 +16,6 @@ public class Dialogue
     }
 
     public virtual void OnSaid() { }
-
-}
-
-
-public class Query
-{
-    List<string> criteria;
 }
 
 /*

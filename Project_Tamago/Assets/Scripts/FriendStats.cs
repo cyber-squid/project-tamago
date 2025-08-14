@@ -91,21 +91,21 @@ public class FriendStats
     {
         if (20 < hungry && hungry < 51)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = true;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt20OrLower"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsBetween21And50"] = true;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = false;
         }
         else if (20 > hungry)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = true;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt20OrLower"] = true;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsBetween21And50"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = false;
         }
         else if (hungry > 51)
         {
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt20OrLower"] = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsBetween21And50"] = false;
-            TalkActivity.activeDialogueCriteria.gameStateDict["hungerIsAt51OrHigher"] = true;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt20OrLower"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsBetween21And50"] = false;
+            TalkActivity.activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = true;
         }
     }
 }

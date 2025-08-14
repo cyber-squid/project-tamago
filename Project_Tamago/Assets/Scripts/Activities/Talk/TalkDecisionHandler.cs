@@ -28,7 +28,7 @@ using Unity.VisualScripting;
 [System.Serializable]
 public class TalkDecisionHandler
 {
-    public Dictionary<string, Dialogue> dialogueCriteriaPairs; // = new Dictionary<string, Dialogue>();
+    public Dictionary<string, Dialogue> dialogueCriteriaPairs; 
     public List<Criteria> criteriaList;
     public List<Dialogue> dialogueList;
 
@@ -44,37 +44,30 @@ public class TalkDecisionHandler
         }
     }
 
+    public Dialogue DetermineDialogue(string key)
+    {
+        return dialogueCriteriaPairs[key];
+    }
+
+    // NOT what the final version of this func will look like
     public void SetUpCriteria()
     {
         criteriaList = new List<Criteria>() { new Criteria(), new Criteria(), new Criteria() };
 
 
-        criteriaList[0].gameStateDict["hungerIsAt20OrLower"] = true;
-        criteriaList[0].gameStateDict["hungerIsBetween21And50"] = false;
-        criteriaList[0].gameStateDict["hungerIsAt51OrHigher"] = false;
+        criteriaList[0].gameStateBools["hungerIsAt20OrLower"] = true;
+        criteriaList[0].gameStateBools["hungerIsBetween21And50"] = false;
+        criteriaList[0].gameStateBools["hungerIsAt51OrHigher"] = false;
 
-        criteriaList[1].gameStateDict["hungerIsAt20OrLower"] = false;
-        criteriaList[1].gameStateDict["hungerIsBetween21And50"] = true;
-        criteriaList[1].gameStateDict["hungerIsAt51OrHigher"] = false;
+        criteriaList[1].gameStateBools["hungerIsAt20OrLower"] = false;
+        criteriaList[1].gameStateBools["hungerIsBetween21And50"] = true;
+        criteriaList[1].gameStateBools["hungerIsAt51OrHigher"] = false;
 
-        criteriaList[2].gameStateDict["hungerIsAt20OrLower"] = false;
-        criteriaList[2].gameStateDict["hungerIsBetween21And50"] = false;
-        criteriaList[2].gameStateDict["hungerIsAt51OrHigher"] = true;
-
-        /*
-        criteriaList[0].gameStateDict["hungerIsAt20OrLower"].stateBool = true;
-        criteriaList[0].gameStateDict["hungerIsBetween21And50"].stateBool = false;
-        criteriaList[0].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
-
-        criteriaList[1].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-        criteriaList[1].gameStateDict["hungerIsBetween21And50"].stateBool = true;
-        criteriaList[1].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
-
-        criteriaList[2].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-        criteriaList[2].gameStateDict["hungerIsBetween21And50"].stateBool = false;
-        criteriaList[2].gameStateDict["hungerIsAt51OrHigher"].stateBool = true;*/
+        criteriaList[2].gameStateBools["hungerIsAt20OrLower"] = false;
+        criteriaList[2].gameStateBools["hungerIsBetween21And50"] = false;
+        criteriaList[2].gameStateBools["hungerIsAt51OrHigher"] = true;
     }
-    //
+    
     public void SetUpDialogue()
     {
         dialogueList = new List<Dialogue>()
@@ -84,107 +77,35 @@ public class TalkDecisionHandler
             new Dialogue(new string[3] {"yippee that food was so yummy btw :3", "v nice stuff, would recommend", "honestly i could go for more o<o"})
         };
     }
-
-    public Dialogue DetermineDialogue(string key)
-    {
-        return dialogueCriteriaPairs[key];
-    }
 }
 
-public class Criteria
-{
-    /*public Dictionary<string, State> gameStateDict;
 
-    public Criteria() 
-    { 
-        gameStateDict = new Dictionary<string, State>
-        {
-            { "hungerIsAt20OrLower", new BoolState(false) },
-            { "hungerIsBetween21And50", new BoolState(false) },
-            { "hungerIsAt51OrHigher", new BoolState(false) },
-            //{ "happyLevel", new IntState(0) },
-            //{ "justWokeUp", new BoolState(true) }
-        };
-    }*/
 
-    public Dictionary<string, bool> gameStateDict;
 
-    public Criteria()
+/*
+criteriaList[0].gameStateDict["hungerIsAt20OrLower"].stateBool = true;
+criteriaList[0].gameStateDict["hungerIsBetween21And50"].stateBool = false;
+criteriaList[0].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
+
+criteriaList[1].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
+criteriaList[1].gameStateDict["hungerIsBetween21And50"].stateBool = true;
+criteriaList[1].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
+
+criteriaList[2].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
+criteriaList[2].gameStateDict["hungerIsBetween21And50"].stateBool = false;
+criteriaList[2].gameStateDict["hungerIsAt51OrHigher"].stateBool = true;*/
+
+
+/*public Dictionary<string, State> gameStateDict;
+
+public Criteria() 
+{ 
+    gameStateDict = new Dictionary<string, State>
     {
-        gameStateDict = new Dictionary<string, bool>
-        {
-            { "hungerIsAt20OrLower", false },
-            { "hungerIsBetween21And50", false },
-            { "hungerIsAt51OrHigher", false },
-            //{ "happyLevel", new IntState(0) },
-            //{ "justWokeUp", new BoolState(true) }
-        };
-    }
-
-    // thank you random stackexchange person. you saved a life today
-    public string CriteriaToString()
-    {
-        var items = from kvp in gameStateDict
-                    select kvp.Key + "=" + kvp.Value;
-
-        return "{" + string.Join(",", items) + "}";
-    }
-}
-
-// *** IMPORTANT REMINDER: i am once again getting ahead of myself
-// don't need to think about how to make it so a state only returns or represents a single value type right now
-// just need to make sure that a criteria can be used as a key to select a dialogue
-// we can also think about how to make editing criteria a relatively scalable thing later
-public class State
-{
-    internal int stateInt;
-    internal bool stateBool;
-    internal string stateString;
-
-    /*
-    public State(int intValue)
-    { 
-        stateAsInt = intValue;
-    }*/
-
-
-    /*
-    public void SetState(State state)
-    {
-        this = state;
-    }
-
-    public void SetState(int stateAsInt)
-    {
-        stateInt = stateAsInt;
-    }
-
-    public void RetrieveState()
-    {
-        if (this == typeof(BoolState))
-        {
-            return stateBool;
-        }
-    }*/
-
-}
-
-public class IntState : State
-{
-    public int representationalInt { get { return stateInt; } }
-
-    public IntState(int givenValue)
-    {
-        stateInt = givenValue;
-    }
-}
-
-public class BoolState : State
-{
-    public bool representationalBool { get { return stateBool; } }
-
-    public BoolState(bool givenValue)
-    {
-        stateBool = givenValue;
-    }
-}
+        { "hungerIsAt20OrLower", new BoolState(false) },
+        { "hungerIsBetween21And50", new BoolState(false) },
+        { "hungerIsAt51OrHigher", new BoolState(false) },
+        //{ "happyLevel", new IntState(0) },
+        //{ "justWokeUp", new BoolState(true) }
+    };
+}*/
