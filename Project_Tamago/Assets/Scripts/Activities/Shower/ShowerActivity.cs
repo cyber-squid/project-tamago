@@ -37,6 +37,7 @@ public class ShowerActivity : GenericActivity
                 if (showerCompletionAmount > 100)
                 {
                     GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.health, 45); // showering should probably do a lot for health since not much else affects it
+                    GameStateManager.Instance.CritterRef.animator.SetBool("somethingNiceHappened", true);
                     text.text = "Yay!";
                     showerGameActive = false;
                     StartCoroutine(ShowerAnimation());
@@ -56,12 +57,12 @@ public class ShowerActivity : GenericActivity
         yield return new WaitForSeconds(3.5f);
         // have them jump out here, let the anim play out here too.
         EndActivity();
-        print("poyo");
         yield break;
     }
 
     internal override void ActivityFinishCleanup()
     {
+        GameStateManager.Instance.CritterRef.animator.SetBool("somethingNiceHappened", false);
         mainScreen.SetActive(false);
     }
 }

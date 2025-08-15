@@ -27,7 +27,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  availableEvolutions: []
+  availableEvolutions:
+  - {fileID: 11400000, guid: ee94f38dc3e3a9043b16e574521846e8, type: 2}
+  - {fileID: 11400000, guid: 09ef2a2cc58e4544cb48958236519bc9, type: 2}
   affectionEvolveRequirement: 0
   bonusEvolveRequirement: 
   depletionRate: 0

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speciesName: Pudgi
   characterIdleSprites:
-  - {fileID: 21300000, guid: b521a59c8ae9b0144af270fba2d173af, type: 3}
+  - {fileID: 1109527996, guid: 4b005d4126bc3454bbbed59377ec8d54, type: 3}
+  - {fileID: -1235209226, guid: 4b005d4126bc3454bbbed59377ec8d54, type: 3}
   characterTalkSprites:
-  - {fileID: 21300000, guid: b521a59c8ae9b0144af270fba2d173af, type: 3}
+  - {fileID: 1109527996, guid: 4b005d4126bc3454bbbed59377ec8d54, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -27,7 +28,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  availableEvolutions: []
+  availableEvolutions:
+  - {fileID: 11400000, guid: ee94f38dc3e3a9043b16e574521846e8, type: 2}
+  - {fileID: 11400000, guid: 09ef2a2cc58e4544cb48958236519bc9, type: 2}
   affectionEvolveRequirement: 0
   bonusEvolveRequirement: 
   depletionRate: 2

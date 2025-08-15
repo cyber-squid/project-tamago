@@ -70,6 +70,7 @@ public class LeftOrRightGame : Minigame
     internal override void OnWinMinigame()
     {
         GameStateManager.Instance.CritterRef.status.ChangeStat(StatType.happy, StatChangeRange.positiveMid);
+        GameStateManager.Instance.CritterRef.animator.SetBool("somethingNiceHappened", true);
     }
 
 }

@@ -19,6 +19,7 @@ public abstract class Minigame : MonoBehaviour
 
     internal virtual void ExitGame()
     {
+        GameStateManager.Instance.CritterRef.animator.SetBool("somethingNiceHappened", false);
         playMenu.FinishMinigame();
     }
 }

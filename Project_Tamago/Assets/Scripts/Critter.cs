@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Critter : MonoBehaviour
@@ -15,6 +16,7 @@ public class Critter : MonoBehaviour
     string bonusEvolveRequirement;
 
     SpriteRenderer spriteRenderer;
+    public Animator animator;
 
 
     void Start()
@@ -22,6 +24,7 @@ public class Critter : MonoBehaviour
         // have a little animation play here first
         OnHatch();
 
+        // this should eventually be fit  into a "name your buddy" sequence instead
         status = new FriendStats("Squishy");
 
         TimeTracker.OnHourPassed += DecreaseAllStats; 
@@ -31,11 +34,18 @@ public class Critter : MonoBehaviour
     {
         // should probably be moving around on the screen
 
+        
+
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             status.ChangeStat(StatType.affection, StatChangeRange.positiveMajor);
-            StartEvolution();
+            //StartEvolution();
         }
+    }
+
+    void IdleAnimation()
+    {
+
     }
 
     void OnHatch()
@@ -44,6 +54,8 @@ public class Critter : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = currentSpecies.characterIdleSprites[0];
+
+        animator = GetComponent<Animator>();
 
         // have the player input their new buddy's name at this point
 
