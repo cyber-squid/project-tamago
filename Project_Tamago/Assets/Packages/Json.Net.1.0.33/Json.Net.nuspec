@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Json.Net</id>
+    <version>1.0.33</version>
+    <authors>Onur Barlık</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">Unlicense</license>
+    <licenseUrl>https://licenses.nuget.org/Unlicense</licenseUrl>
+    <projectUrl>https://github.com/obarlik/Json.Net/wiki/Json.Net's-Home</projectUrl>
+    <description>A minimalistic JSON handler library.</description>
+    <releaseNotes>- Guid conversion bugfix
+- IEnumerable deserialization bugfix
+- ExpandoObjects implemented
+- String to Expando conversion bugfix
+- IEnumerable&lt;&gt; deserialization bugfix
+- Nullable Enum deserialization bugfix
+- Interface null deserialization bugfix</releaseNotes>
+    <tags>json, jsonnet, minimalistic</tags>
+    <repository type="Github" url="https://github.com/obarlik/Json.Net.git" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Json.Net;
+using Newtonsoft.Json;
 
 public class TalkActivity : GenericActivity
 {
@@ -58,6 +60,8 @@ public class TalkActivity : GenericActivity
         GameStateManager.Instance.CritterRef.ToggleVisibility(false);
 
         mainScreen.SetActive(true);
+        Debug.Log(JsonConvert.SerializeObject(activeDialogueCriteria));
+         
     }
 
 

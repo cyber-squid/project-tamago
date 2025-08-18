@@ -8,46 +8,57 @@ using UnityEngine;
 
 public class Criteria
 {
-    public Dictionary<string, bool> gameStateBools;
-    public Dictionary<string, int> gameStateInts;
-    public Dictionary<string, string> gameStateStrings;
 
-
-    public Criteria()
-    {
-        SetUpBools();
-        SetUpInts();
-        SetUpStrings();
-    }
-
-    // thank you random stackexchange person. you saved a life today
+    
     public string CriteriaToString()
     {
+        // archived, bc i'm pretty sure i can just use the newtonsoft jsonconvert func instead here!
+        // which is a lot nicer and cleaner 
+        /*
+        // thank you random stackexchange person. you saved a life today
         var bools = from pairs in gameStateBools
                     select pairs.Key + "=" + pairs.Value;
 
-        string almostDone = "{" + string.Join(",", bools) + "}";
+        string boolsAsLongString = "{" + string.Join(",", bools) + "}";
 
-        string thisIsSilly = SingleDictToString();
-        string idrc = IDontGetItAndAmGettingAnnoyed();
-        return almostDone + thisIsSilly + idrc;
-    }
 
-    public string SingleDictToString()
-    {
         var ints = from pairs in gameStateInts
                    select pairs.Key + "=" + pairs.Value;
 
-        return "{" + string.Join(",", ints) + "}";
-    }
+        string intsAsLongString = "{" + string.Join(",", ints) + "}";
 
-    public string IDontGetItAndAmGettingAnnoyed()
-    {
         var strings = from pairs in gameStateStrings
                       select pairs.Key + "=" + pairs.Value;
 
-        return "{" + string.Join(",", strings) + "}";
+        string stringsAsLongString = "{" + string.Join(",", strings) + "}";
+
+        return boolsAsLongString + intsAsLongString + stringsAsLongString;*/
+        return Newtonsoft.Json.JsonConvert.SerializeObject(this);
     }
+
+
+    public Dictionary<string, bool> gameStateBools = new Dictionary<string, bool>
+    {
+        { "hungerIsAt20OrLower", false },
+        { "hungerIsBetween21And50", false },
+        { "hungerIsAt51OrHigher", false },
+        { "thisDialoguePathHasBeenUsed", false }
+    };
+    public Dictionary<string, int> gameStateInts = new Dictionary<string, int>
+    {
+        { "age", 0 },
+        { "numberOfTimesSpokenToInARow", 0 },
+        { "numberOfTimesSpokenToInAnHour", 0 }
+    };
+    public Dictionary<string, string> gameStateStrings = new Dictionary<string, string>
+    {
+        { "species", "None" },
+        { "personality", "Relaxed" },
+        { "favouriteFood", "Chicken" },
+            //{ "happyLevel", new IntState(0) },
+            //{ "justWokeUp", new BoolState(true) }
+    };
+
 
     // please help. how else do i represent this. i wanna just make these strings consts too but then i'd need an entire page for that
     void SetUpBools()
