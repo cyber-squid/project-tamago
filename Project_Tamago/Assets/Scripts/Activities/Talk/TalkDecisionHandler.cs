@@ -1,11 +1,13 @@
 ﻿using JetBrains.Annotations;
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using Unity;
+using UnityEditor;
+using UnityEngine;
 
 
 // giant set of "rules" aka dialogues, (one for each personality?), and criteria that must be met to meet them.
@@ -28,13 +30,13 @@ using Unity.VisualScripting;
 [System.Serializable]
 public class TalkDecisionHandler
 {
-    public Dictionary<string, Dialogue> dialogueCriteriaPairs; 
+    public Dictionary<string, Dialogue[]> dialogueCriteriaPairs; 
     public List<Criteria> criteriaList;
-    public List<Dialogue> dialogueList;
+    public List<Dialogue[]> dialogueList;
 
     public TalkDecisionHandler() 
     {
-        dialogueCriteriaPairs = new Dictionary<string, Dialogue>();
+        dialogueCriteriaPairs = new Dictionary<string, Dialogue[]>();
 
         SetUpCriteria(); SetUpDialogue();
 
@@ -46,7 +48,7 @@ public class TalkDecisionHandler
 
     public Dialogue DetermineDialogue(string key)
     {
-        return dialogueCriteriaPairs[key];
+        return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
     }
 
     // NOT what the final version of this func will look like
@@ -70,16 +72,37 @@ public class TalkDecisionHandler
     
     public void SetUpDialogue()
     {
-        dialogueList = new List<Dialogue>()
-        {
+        dialogueList = new List<Dialogue[]>();
+
+        Dialogue[] array = new Dialogue[] { 
             // need to figure out a way to force a dialogue to have the same amount of expressions as lines.
-            new Dialogue(new string[] {"dawg im so hecking hungry like holy moly", "can you pls feed me like. rn ;-;"}, 
+            new Dialogue(new string[] {"dawg im so hecking hungry like holy moly", "can you pls feed me like. rn ;-;"},
                          new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning }),
-            new Dialogue(new string[] {"hey um i'm not crazy hungy but i'm hungy", "would you mind giving me something to eat?"},
+            new Dialogue(new string[] {"AM HUNGRE!!!!!", "food please? pretty please??"},
                          new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning }),
-            new Dialogue(new string[] {"yippee that food was so yummy btw :3", "v nice stuff, would recommend", "honestly i could go for more o<o"},
-                         new TalkExpression[] { TalkExpression.smiling, TalkExpression.smiling, TalkExpression.smiling })
+            new Dialogue(new string[] {"the hunger... its taking over....", "i shant be here much longer.....", "well okay i'm not dead but i'm SO HUNGRY!!"},
+                         new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning, TalkExpression.frowning })
         };
+
+        dialogueList.Add(array);
+
+        array = new Dialogue[] {
+            new Dialogue(new string[] { "hey um i'm not crazy hungy but i'm hungy", "would you mind giving me something to eat?" },
+                         new TalkExpression[] { TalkExpression.frowning, TalkExpression.frowning }),
+            new Dialogue(new string[] {"ahhh man am i hungry. i could so go for... everything", "ideally something healthy but i'm down for hotdogs too"},
+                         new TalkExpression[] { TalkExpression.frowning, TalkExpression.smiling }),
+        };
+
+        dialogueList.Add(array);
+
+        array = new Dialogue[] {
+            new Dialogue(new string[] { "yippee that food was so yummy btw :3", "v nice stuff, would recommend", "honestly i could go for more o<o" },
+                         new TalkExpression[] { TalkExpression.smiling, TalkExpression.smiling, TalkExpression.smiling }),
+            new Dialogue(new string[] { "RAAHHH I LOVE CHICKEN!!", "thank you for giving me some :3" },
+                         new TalkExpression[] { TalkExpression.smiling, TalkExpression.smiling }),
+        };
+
+        dialogueList.Add(array);
     }
 }
 
