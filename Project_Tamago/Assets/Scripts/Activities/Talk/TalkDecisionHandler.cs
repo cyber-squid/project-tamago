@@ -1,13 +1,8 @@
-﻿using JetBrains.Annotations;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-using Unity;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
+using Newtonsoft.Json;
 
 
 // giant set of "rules" aka dialogues, (one for each personality?), and criteria that must be met to meet them.
@@ -30,13 +25,15 @@ using UnityEngine;
 [System.Serializable]
 public class TalkDecisionHandler
 {
-    public Dictionary<string, Dialogue[]> dialogueCriteriaPairs; 
+    [SerializedDictionary("Criteria File", "Dialogue Options")]
+    public SerializedDictionary<TextAsset, Dialogue[]> unserialisedDialogueCriteriaPairs;
+    public SerializedDictionary<string, Dialogue[]> dialogueCriteriaPairs; 
     public List<Criteria> criteriaList;
     public List<Dialogue[]> dialogueList;
 
     public TalkDecisionHandler() 
     {
-        dialogueCriteriaPairs = new Dictionary<string, Dialogue[]>();
+        dialogueCriteriaPairs = new SerializedDictionary<string, Dialogue[]>();
 
         SetUpCriteria(); SetUpDialogue();
 
@@ -48,6 +45,8 @@ public class TalkDecisionHandler
 
     public Dialogue DetermineDialogue(string key)
     {
+        Criteria currentCriteriaSet = JsonConvert.DeserializeObject<Criteria>(key);
+
         return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
     }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 // ***** IMPORTANT!!! REMEMBER, THINK ABOUT HOW TO IMPLEMENT CHOICE DIALOGUES LATER. *****
 // for now, just try to get a piece of dialogue from the dialogue class to display. 
+[Serializable]
 public class Dialogue
 {
     public string[] linesToSay;
