@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Json.Net;
 using Newtonsoft.Json;
+using System.IO;
 
 public class TalkActivity : GenericActivity
 {
@@ -46,8 +43,12 @@ public class TalkActivity : GenericActivity
 
     internal override void ChangeScreen()
     {
+        File.WriteAllText(Application.dataPath + "/CurrentCriteria.json", activeDialogueCriteria.CriteriaToString());
+
+        TextAsset currentCriteria = JsonUtility.FromJson<TextAsset>(File.ReadAllText(Application.dataPath + "/CurrentCriteria.json"));
         // should probably calculate, or retreive current query somewhere here?
-        currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria.CriteriaToString());
+        currentDialogue = talkDecisionHandler.DetermineDialogue(currentCriteria);
+
 
         if (currentDialogue == null)
             currentDialogue = failsafeDialogue;

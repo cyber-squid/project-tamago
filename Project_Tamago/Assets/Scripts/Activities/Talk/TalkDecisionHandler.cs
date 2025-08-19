@@ -27,10 +27,11 @@ public class TalkDecisionHandler
 {
     [SerializedDictionary("Criteria File", "Dialogue Options")]
     public SerializedDictionary<TextAsset, Dialogue[]> unserialisedDialogueCriteriaPairs;
-    public SerializedDictionary<string, Dialogue[]> dialogueCriteriaPairs; 
+    public Dictionary<string, Dialogue[]> dialogueCriteriaPairs; 
     public List<Criteria> criteriaList;
     public List<Dialogue[]> dialogueList;
 
+    /*
     public TalkDecisionHandler() 
     {
         dialogueCriteriaPairs = new SerializedDictionary<string, Dialogue[]>();
@@ -41,13 +42,19 @@ public class TalkDecisionHandler
         {
             dialogueCriteriaPairs.Add(criteriaList[i].CriteriaToString(), dialogueList[i]);
         }
-    }
 
-    public Dialogue DetermineDialogue(string key)
+        for (int i = 0; i < unserialisedDialogueCriteriaPairs.Count; i++)
+        {
+            //dialogueCriteriaPairs.Add(unserialisedDialogueCriteriaPairs.)
+        }
+    }*/
+
+    public Dialogue DetermineDialogue(TextAsset key)
     {
-        Criteria currentCriteriaSet = JsonConvert.DeserializeObject<Criteria>(key);
+        //Criteria currentCriteriaSet = JsonConvert.SerializeObject(key);
 
-        return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
+        //return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
+        return unserialisedDialogueCriteriaPairs[key][Random.Range(0, unserialisedDialogueCriteriaPairs[key].Length)];
     }
 
     // NOT what the final version of this func will look like
