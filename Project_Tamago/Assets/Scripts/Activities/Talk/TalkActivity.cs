@@ -20,7 +20,7 @@ public class TalkActivity : GenericActivity
 
     // in certain cases, we'd want the game to force a talk, eg if something calls for checking a query that would prompt the force talk if it passes.
 
-    [SerializeField] TalkDecisionHandler talkDecisionHandler;
+    TalkDecisionHandler talkDecisionHandler;
     public static Criteria activeDialogueCriteria;
     Dialogue currentDialogue;
     Dialogue failsafeDialogue;
@@ -31,7 +31,7 @@ public class TalkActivity : GenericActivity
 
     void Start()
     {
-        talkDecisionHandler = new TalkDecisionHandler();
+        talkDecisionHandler = GetComponent<TalkDecisionHandler>();
         activeDialogueCriteria = new Criteria();
 
         activeDialogueCriteria.gameStateBools["hungerIsAt20OrLower"] = true;
@@ -43,11 +43,11 @@ public class TalkActivity : GenericActivity
 
     internal override void ChangeScreen()
     {
-        File.WriteAllText(Application.dataPath + "/CurrentCriteria.json", activeDialogueCriteria.CriteriaToString());
+       // File.WriteAllText(Application.dataPath + "/CurrentCriteria.json", activeDialogueCriteria.CriteriaToString());
 
-        TextAsset currentCriteria = JsonUtility.FromJson<TextAsset>(File.ReadAllText(Application.dataPath + "/CurrentCriteria.json"));
+        //TextAsset currentCriteria = JsonUtility.FromJson<TextAsset>(File.ReadAllText(Application.dataPath + "/CurrentCriteria.json"));
         // should probably calculate, or retreive current query somewhere here?
-        currentDialogue = talkDecisionHandler.DetermineDialogue(currentCriteria);
+        currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria.CriteriaToString());
 
 
         if (currentDialogue == null)

@@ -23,7 +23,7 @@ using Newtonsoft.Json;
 // if this string matches a key in the dictionary, we can pass the dialogue value paired to it to the talkactivity, for it to display. 
 
 [System.Serializable]
-public class TalkDecisionHandler
+public class TalkDecisionHandler : MonoBehaviour
 {
     [SerializedDictionary("Criteria File", "Dialogue Options")]
     public SerializedDictionary<TextAsset, Dialogue[]> unserialisedDialogueCriteriaPairs;
@@ -31,6 +31,27 @@ public class TalkDecisionHandler
     public List<Criteria> criteriaList;
     public List<Dialogue[]> dialogueList;
 
+
+
+    void Start()
+    {
+        SetUpInternalDict();
+    }
+
+    public void SetUpInternalDict()
+    {
+        dialogueCriteriaPairs = new Dictionary<string, Dialogue[]>();
+        //unserialisedDialogueCriteriaPairs = new SerializedDictionary<TextAsset, Dialogue[]>();
+
+        foreach (var pair in unserialisedDialogueCriteriaPairs)
+        {
+            string stringToSerialise = pair.Key.ToString();
+            Criteria criteria = JsonUtility.FromJson<Criteria>(stringToSerialise);
+
+            dialogueCriteriaPairs.Add(JsonConvert.SerializeObject(criteria), pair.Value);
+            Debug.Log(JsonConvert.SerializeObject(criteria));
+        }
+    }
     /*
     public TalkDecisionHandler() 
     {
@@ -49,13 +70,14 @@ public class TalkDecisionHandler
         }
     }*/
 
-    public Dialogue DetermineDialogue(TextAsset key)
+    public Dialogue DetermineDialogue(string key)
     {
         //Criteria currentCriteriaSet = JsonConvert.SerializeObject(key);
 
         //return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
-        return unserialisedDialogueCriteriaPairs[key][Random.Range(0, unserialisedDialogueCriteriaPairs[key].Length)];
+        return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
     }
+
 
     // NOT what the final version of this func will look like
     public void SetUpCriteria()

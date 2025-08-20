@@ -43,3 +43,8 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("activity open: " + activityIsInProgress);
     }
 }
+
+public class SaveManager
+{
+
+}
