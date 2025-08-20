@@ -38,14 +38,22 @@ public class TalkActivity : GenericActivity
         activeDialogueCriteria.gameStateBools["hungerIsBetween21And50"] = false;
         activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = false;
 
+        
         failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" }, new TalkExpression[] {TalkExpression.expressionless});
     }
 
     internal override void ChangeScreen()
     {
-       // File.WriteAllText(Application.dataPath + "/CurrentCriteria.json", activeDialogueCriteria.CriteriaToString());
+        Debug.Log(activeDialogueCriteria.CriteriaToString());
 
+        //if (!Directory.Exists(Application.persistentDataPath + "/SaveData/"))
+        //Directory.CreateDirectory(Application.persistentDataPath + "/SaveData/");
+
+        //File.WriteAllText(Application.persistentDataPath + "/SaveData/CurrentCriteria.json", activeDialogueCriteria.CriteriaToString());
         //TextAsset currentCriteria = JsonUtility.FromJson<TextAsset>(File.ReadAllText(Application.dataPath + "/CurrentCriteria.json"));
+        //TextAsset currentCriteria = Resources.Load<TextAsset>(File.ReadAllText(Application.persistentDataPath + "/SaveData/CurrentCriteria.json"));
+
+        //Debug.Log(currentCriteria.ToString());
         // should probably calculate, or retreive current query somewhere here?
         currentDialogue = talkDecisionHandler.DetermineDialogue(activeDialogueCriteria.CriteriaToString());
 

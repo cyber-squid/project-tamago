@@ -46,10 +46,14 @@ public class TalkDecisionHandler : MonoBehaviour
         foreach (var pair in unserialisedDialogueCriteriaPairs)
         {
             string stringToSerialise = pair.Key.ToString();
-            Criteria criteria = JsonUtility.FromJson<Criteria>(stringToSerialise);
+            stringToSerialise = stringToSerialise.Replace(" ", "");
+            stringToSerialise = stringToSerialise.Replace("\r", "");
+            stringToSerialise = stringToSerialise.Replace("\n", "");
+            stringToSerialise = stringToSerialise.Replace(@"\", "");
+            //Criteria criteria = JsonUtility.FromJson<Criteria>(stringToSerialise);
 
-            dialogueCriteriaPairs.Add(JsonConvert.SerializeObject(criteria), pair.Value);
-            Debug.Log(JsonConvert.SerializeObject(criteria));
+            dialogueCriteriaPairs.Add(stringToSerialise, pair.Value);
+            Debug.Log(stringToSerialise);
         }
     }
     /*

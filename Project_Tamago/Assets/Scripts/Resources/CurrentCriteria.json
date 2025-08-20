@@ -1,0 +1,18 @@
+{
+  "gameStateBools": {
+    "hungerIsAt20OrLower": true,
+    "hungerIsBetween21And50": false,
+    "hungerIsAt51OrHigher": false,
+    "thisDialoguePathHasBeenUsed": false
+  },
+  "gameStateInts": {
+    "age": 0,
+    "numberOfTimesSpokenToInARow": 0,
+    "numberOfTimesSpokenToInAnHour": 0
+  },
+  "gameStateStrings": {
+    "species": "None",
+    "personality": "Relaxed",
+    "favouriteFood": "Chicken"
+  }
+}
