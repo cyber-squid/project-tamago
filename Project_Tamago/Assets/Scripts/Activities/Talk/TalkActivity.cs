@@ -39,7 +39,7 @@ public class TalkActivity : GenericActivity
         activeDialogueCriteria.gameStateBools["hungerIsAt51OrHigher"] = false;
 
         
-        failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" }, new TalkExpression[] {TalkExpression.expressionless});
+        //failsafeDialogue = new Dialogue(new string[] { "i don't really have anything to say rn" }, new TalkExpression[] {TalkExpression.expressionless});
     }
 
     internal override void ChangeScreen()
@@ -61,11 +61,11 @@ public class TalkActivity : GenericActivity
         if (currentDialogue == null)
             currentDialogue = failsafeDialogue;
 
-        dialogueUIText.text = currentDialogue.linesToSay[0];
+        dialogueUIText.text = currentDialogue.setOfLines[0].lineToSay;
         currentLine = 0;
 
 
-        largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.expressions[currentLine]];
+        largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.setOfLines[currentLine].expression];
         GameStateManager.Instance.CritterRef.ToggleVisibility(false);
 
         mainScreen.SetActive(true);
@@ -80,15 +80,15 @@ public class TalkActivity : GenericActivity
         {
             currentLine += 1;
 
-            if (currentLine >= currentDialogue.linesToSay.Length)
+            if (currentLine >= currentDialogue.setOfLines.Length)
             {
                 currentDialogue.OnSaid();
                 EndActivity();
             }
             else
             {
-                dialogueUIText.text = currentDialogue.linesToSay[currentLine];
-                largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.expressions[currentLine]]; // absolute unit of a line. please make it shorter
+                dialogueUIText.text = currentDialogue.setOfLines[currentLine].lineToSay;
+                largeCritterSprite.sprite = GameStateManager.Instance.CritterRef.CurrentSpecies.characterTalkSprites[(int)currentDialogue.setOfLines[currentLine].expression]; // absolute unit of a line. please make it shorter
             }
         }
     }

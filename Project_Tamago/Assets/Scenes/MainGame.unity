@@ -4034,6 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894673774}
   - component: {fileID: 894673775}
+  - component: {fileID: 894673776}
   m_Layer: 5
   m_Name: Talk Activity
   m_TagString: Untagged
@@ -4074,30 +4075,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScreen: {fileID: 665920770}
-  talkDecisionHandler:
-    unserialisedDialogueCriteriaPairs:
-      _serializedList:
-      - Key: {fileID: 4900000, guid: 93d4aa12b027700409e90b82b7bc442f, type: 3}
-        Value:
-        - linesToSay:
-          - dawg im so hecking hungry like holy moly
-          - can you pls feed me like. rn ;-;
-          expressions: 0700000007000000
-      - Key: {fileID: 4900000, guid: b2a7b094acaad3e45a9636909e086a3e, type: 3}
-        Value:
-        - linesToSay:
-          - ahhh man am i hungry. i could so go for... everything
-          - ideally something healthy but i'm down for hotdogs too
-          expressions: 0700000007000000
-      - Key: {fileID: 4900000, guid: 2ff6f5c1d1472704a8fb4ad0e66e0431, type: 3}
-        Value:
-        - linesToSay:
-          - yippee that food was so yummy btw :3
-          - v nice stuff, would recommend
-          - honestly i could go for more o<o
-          expressions: 000000000000000000000000
   dialogueUIText: {fileID: 714007535}
   largeCritterSprite: {fileID: 1124792609}
+--- !u!114 &894673776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894673773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefe648bb228eae4d91665cced5b3c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unserialisedDialogueCriteriaPairs:
+    _serializedList:
+    - Key: {fileID: 4900000, guid: 93d4aa12b027700409e90b82b7bc442f, type: 3}
+      Value:
+      - setOfLines:
+        - lineToSay: dawg im so hecking hungry like holy moly
+          expression: 7
+          isChoice: 0
+        - lineToSay: can you pls feed me like. rn ;-;
+          expression: 7
+          isChoice: 0
+    - Key: {fileID: 4900000, guid: b2a7b094acaad3e45a9636909e086a3e, type: 3}
+      Value:
+      - setOfLines:
+        - lineToSay: ahhh man am i hungry. i could so go for... everything
+          expression: 7
+          isChoice: 0
+        - lineToSay: ideally something healthy but i'm down for hotdogs too
+          expression: 0
+          isChoice: 0
+    - Key: {fileID: 4900000, guid: 2ff6f5c1d1472704a8fb4ad0e66e0431, type: 3}
+      Value:
+      - setOfLines:
+        - lineToSay: yippee that food was so yummy btw :3
+          expression: 0
+          isChoice: 0
+        - lineToSay: v nice stuff, would recommend
+          expression: 0
+          isChoice: 0
+        - lineToSay: honestly i could go for more o<o
+          expression: 0
+          isChoice: 0
 --- !u!1 &925760029
 GameObject:
   m_ObjectHideFlags: 0

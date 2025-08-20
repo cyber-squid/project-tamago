@@ -9,16 +9,20 @@ using System.Threading.Tasks;
 [Serializable]
 public class Dialogue
 {
-    public string[] linesToSay;
-    public TalkExpression[] expressions;
-
-    public Dialogue(string[] linesToSay, TalkExpression[] expressions)
-    {
-        this.linesToSay = linesToSay;
-        this.expressions = expressions;
-    }
+    public DialoguePiece[] setOfLines;
 
     public virtual void OnSaid() { }
+}
+
+[Serializable]
+public class DialoguePiece
+{
+    public string lineToSay;
+    public TalkExpression expression;
+
+    public bool isChoice;
+
+
 }
 
 /*

@@ -56,23 +56,6 @@ public class TalkDecisionHandler : MonoBehaviour
             Debug.Log(stringToSerialise);
         }
     }
-    /*
-    public TalkDecisionHandler() 
-    {
-        dialogueCriteriaPairs = new SerializedDictionary<string, Dialogue[]>();
-
-        SetUpCriteria(); SetUpDialogue();
-
-        for (int i = 0; i < dialogueList.Count; i++)
-        {
-            dialogueCriteriaPairs.Add(criteriaList[i].CriteriaToString(), dialogueList[i]);
-        }
-
-        for (int i = 0; i < unserialisedDialogueCriteriaPairs.Count; i++)
-        {
-            //dialogueCriteriaPairs.Add(unserialisedDialogueCriteriaPairs.)
-        }
-    }*/
 
     public Dialogue DetermineDialogue(string key)
     {
@@ -81,27 +64,7 @@ public class TalkDecisionHandler : MonoBehaviour
         //return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
         return dialogueCriteriaPairs[key][Random.Range(0, dialogueCriteriaPairs[key].Length)];
     }
-
-
-    // NOT what the final version of this func will look like
-    public void SetUpCriteria()
-    {
-        criteriaList = new List<Criteria>() { new Criteria(), new Criteria(), new Criteria() };
-
-
-        criteriaList[0].gameStateBools["hungerIsAt20OrLower"] = true;
-        criteriaList[0].gameStateBools["hungerIsBetween21And50"] = false;
-        criteriaList[0].gameStateBools["hungerIsAt51OrHigher"] = false;
-
-        criteriaList[1].gameStateBools["hungerIsAt20OrLower"] = false;
-        criteriaList[1].gameStateBools["hungerIsBetween21And50"] = true;
-        criteriaList[1].gameStateBools["hungerIsAt51OrHigher"] = false;
-
-        criteriaList[2].gameStateBools["hungerIsAt20OrLower"] = false;
-        criteriaList[2].gameStateBools["hungerIsBetween21And50"] = false;
-        criteriaList[2].gameStateBools["hungerIsAt51OrHigher"] = true;
-    }
-    
+    /*
     public void SetUpDialogue()
     {
         dialogueList = new List<Dialogue[]>();
@@ -135,36 +98,5 @@ public class TalkDecisionHandler : MonoBehaviour
         };
 
         dialogueList.Add(array);
-    }
+    }*/
 }
-
-
-
-
-/*
-criteriaList[0].gameStateDict["hungerIsAt20OrLower"].stateBool = true;
-criteriaList[0].gameStateDict["hungerIsBetween21And50"].stateBool = false;
-criteriaList[0].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
-
-criteriaList[1].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-criteriaList[1].gameStateDict["hungerIsBetween21And50"].stateBool = true;
-criteriaList[1].gameStateDict["hungerIsAt51OrHigher"].stateBool = false;
-
-criteriaList[2].gameStateDict["hungerIsAt20OrLower"].stateBool = false;
-criteriaList[2].gameStateDict["hungerIsBetween21And50"].stateBool = false;
-criteriaList[2].gameStateDict["hungerIsAt51OrHigher"].stateBool = true;*/
-
-
-/*public Dictionary<string, State> gameStateDict;
-
-public Criteria() 
-{ 
-    gameStateDict = new Dictionary<string, State>
-    {
-        { "hungerIsAt20OrLower", new BoolState(false) },
-        { "hungerIsBetween21And50", new BoolState(false) },
-        { "hungerIsAt51OrHigher", new BoolState(false) },
-        //{ "happyLevel", new IntState(0) },
-        //{ "justWokeUp", new BoolState(true) }
-    };
-}*/
